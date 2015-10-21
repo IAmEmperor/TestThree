@@ -1,0 +1,22 @@
+public static boolean Calc(){
+		Clc c=new Clc();
+		in = new Scanner(System.in);
+		System.out.print("请输入两个数字：");
+		double x=in.nextDouble();
+		double y=in.nextDouble();		
+		if(y==0){
+			System.out.println("除数不能为零！");
+			Calc();
+		}
+		else{
+		double z1=c.add(x, y);
+		double z2=c.divide(x, y);
+		double z3=c.minus(x, y);
+		double z4=c.multiply(x, y);	
+		System.out.println("相加结果为"+z1);
+		System.out.println("相减结果为"+z3);
+		System.out.println("相乘结果为"+z4);		
+		System.out.println("相除结果为"+z2);
+		}
+		return true;
+	}
