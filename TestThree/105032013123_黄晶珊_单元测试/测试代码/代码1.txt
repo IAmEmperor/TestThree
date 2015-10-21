@@ -1,0 +1,87 @@
+public boolean fun(){
+		ArrayList<Student> list=new ArrayList<Student>();
+			System.out.println("1.add");
+			System.out.println("2.alter");
+			System.out.println("3.select");
+			System.out.println("4.delete");
+			System.out.println("5.display");
+			System.out.println("6.exit");
+			
+			Scanner in= new Scanner(System.in);
+			int id=in.nextInt();
+		switch(id){
+		case 1:
+			//add;
+
+			System.out.println("输入几个学生");
+		    int number=in.nextInt();
+			for(int i=0;i<number;i++){
+				Student s=new Student();
+				s.setStuName(in.next());
+				s.setStuNo(in.next());
+				s.setStuAge(in.nextInt());
+				s.setStuSex(in.next());
+				s.setStuScore(in.nextInt());
+				list.add(s);
+			}	
+			break;
+		case 2:
+			//alter;
+			String no=in.next();
+			for(int i=0;i<list.size();i++)
+			{
+				Student s2=new Student();
+				s2=(Student) list.get(i);
+				if(no.equals(no))
+					
+				{
+					System.out.print("xiugaimingzi");
+					s2.setStuName(in.next());
+				}
+			}
+			break;
+		case 3:
+			//select;
+			String no1=in.next();
+			for(int i=0;i<list.size();i++)
+			{
+				Student s3=new Student();
+				s3=(Student) list.get(i);
+				if(no1.equals(no1))
+					
+				{
+					System.out.print(s3.getStuName()+s3.getStuAge()+s3.getStuNo()+s3.getStuScore()+s3.getStuSex());
+			
+				}
+			}
+			break;
+		
+		case 4:
+			//alter;
+			String no2=in.next();
+			for(int i=0;i<list.size();i++)
+			{
+				Student s4=new Student();
+				s4=(Student) list.get(i);
+				if(no2.equals(no2))
+					
+				{
+					list.remove(i);
+			
+				}
+			}
+			break;
+		case 5:
+			//display;
+			for(int i=0;i<list.size();i++){
+				Student s1=new Student();
+				s1=(Student) list.get(i);
+				System.out.println(s1.getStuName()+s1.getStuNo()+s1.getStuAge()+s1.getStuScore()+s1.getStuSex());
+			}
+			break;
+		case 6:
+			System.exit(0);
+				
+		}
+		return true;
+	}

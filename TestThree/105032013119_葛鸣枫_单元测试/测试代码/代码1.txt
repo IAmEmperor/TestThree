@@ -1,0 +1,41 @@
+package cn.gmf;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+
+public class Select {
+/**
+ * 用于查询管理系统中指定学生的信息
+ * @param list
+ */
+	public static void select(ArrayList<Student> list){
+		
+		System.out.println("================================");
+        boolean b=true;
+		if(list.isEmpty()) {
+			System.out.println("管理系统学生信息为空！");
+		}
+		else{
+			
+			System.out.println("输入您要查询学生的学号：");
+			Scanner in = new Scanner(System.in);
+			String inputNo=in.next();
+			for(int i=0;i<list.size();i++) {
+				Student s=new Student();
+				s=list.get(i);
+				if(inputNo.equals(s.getStNumber())){
+				System.out.println("姓名"+"\t"+"学号"+"\t"+"年龄"+
+					"\t"+"性别"+"\t"+"成绩");
+		     	System.out.println(s.getStName()+"\t"+s.getStNumber()+"\t"+
+					s.getStAge()+"\t"+s.getStSex()+"\t"+s.getStScore());
+		     	b=false;
+				}
+		}
+			if(b){
+				System.out.println("管理系统没有您要查询的学生信息！");
+			}
+		}
+		}
+	}

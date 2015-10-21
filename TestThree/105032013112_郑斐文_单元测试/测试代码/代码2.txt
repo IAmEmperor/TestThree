@@ -1,0 +1,42 @@
+	//保存信息到文档
+	public boolean SaveStuInfo(){
+		FileOutputStream out = null;		
+		Collection<StuInfo> stuInfoList = new ArrayList<StuInfo>();//新建容器存储学生信息
+		stuInfoList.addAll(stuList);
+		Iterator<StuInfo> it = stuList.iterator();//建立迭代器接口输出
+		try{
+			try{
+				int i = 1;
+				out = new FileOutputStream("StuInfo.txt",false);//打开文件
+				//写入数据
+				while(it.hasNext()){
+					if(i == stuNumbers)
+						out.write(it.next().toString().getBytes());
+					else
+					out.write((it.next().toString()+"\r\n").getBytes());
+					i++;
+				}
+				out.flush();
+			}catch(FileNotFoundException ex){
+				ex.printStackTrace();
+				return false;//只是返回一个失败信号，再次操作由另一个函数决定
+			}catch(IOException ex){
+				ex.printStackTrace();
+				return false;//只是返回一个失败信号，再次操作由另一个函数决定
+			}
+		}catch(Exception ex){
+			System.err.println("学生数据集合出错");
+			return false;//只是返回一个失败信号，再次操作由另一个函数决定
+		}finally{
+			if(out != null){
+				try{
+					out.close();
+					System.out.println("保存学生信息成功");
+				}catch(IOException ex){
+					ex.printStackTrace();
+					return false;//只是返回一个失败信号，再次操作由另一个函数决定
+				}
+			}
+		}
+		return true;//只是返回一个成功信号，再次操作由另一个函数决定
+	}

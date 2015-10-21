@@ -1,0 +1,31 @@
+public static boolean main() {
+		// TODO Auto-generated method stub
+		Circle circle =  new Circle(3);
+		String circles = "半径为"+circle.getR()+"的圆计算结果为\n\t";
+		circles +=circle.toString();
+		System.out.println(circles);
+		
+		System.out.println();
+		
+		Rectangle rectangle = new Rectangle(3,4);
+		StringBuffer rectangles = new StringBuffer("长为"+rectangle.getA()+
+													"宽为"+rectangle.getB()+
+													"的矩形计算结果为\n\t");
+		rectangles.append(rectangle.toString());
+		System.out.println(rectangles);
+		
+		System.out.println();
+		
+		StringBuilder cirNum = new StringBuilder("圆形类被调用了");
+		cirNum.append(circle.getCirNum());
+		cirNum.append("次");
+		System.out.println(cirNum);
+		
+		System.out.println();
+		
+		StringBuilder recNum = new StringBuilder("矩形类被调用了");
+		recNum.append(rectangle.getRecNum());
+		recNum.append("次");
+		System.out.println(recNum);
+		return true;
+	}

@@ -1,0 +1,103 @@
+package cn.gmf;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class Delete {
+
+	public static void delete(ArrayList<Student> list){
+/**
+ * 删除管理系统内的学生
+ */
+		boolean b=true;
+		int k=0;
+		String s1 = "";
+		String str;
+		System.out.println("================================");
+		if(list.isEmpty())	{
+			System.out.println("管理系统学生信息为空！");
+		}
+		else{
+			try{
+				System.out.println("1-选择删除");
+				System.out.println("2-全部删除");
+				System.out.println("请选择删除方式：");
+				Scanner in=new Scanner(System.in);
+				int id=in.nextInt();
+				while(!(id==1||id==2))	{
+					//对于选择不是1和2选项，让用户重新输入
+					System.out.println("请输入正确删除方法：");
+					id=in.nextInt();
+				}
+				switch(id){
+				case 1:
+					try{
+						File f=new File("file/record.txt");
+						if(f.exists()){
+							System.out.println("选择你要删除学生学号：");
+							String no=in.next();
+							BufferedReader input = new BufferedReader(new FileReader(f));
+							while ((str = input.readLine()) != null)  {  
+								String [] e = str.split("\t");	//分隔符
+								if(e[1].equals(no))  {	//学号与用户输入的学号相等
+									System.out.println("姓名"+"\t"+"学号"+"\t"+
+											"年龄"+"\t"+"性别"+"\t"+"成绩");
+									System.out.println(str);  
+									k=1;
+									continue;               		
+								}	
+								s1 = s1+str+"\n";	//覆盖
+							} 
+							if(k!=1) {
+								System.out.println("管理系统中没有该同学的信息!");
+							}
+						else  {
+							System.out.println("确认修改输入yes");
+							String x = in.next();
+							if(x.equalsIgnoreCase("yes"))	{
+								input.close();  
+								BufferedWriter output = new BufferedWriter(new FileWriter(f));  
+								output.write(s1);  
+								output.close();
+								System.out.println("删除成功！");
+							}
+							else
+								System.out.println("信息未被删除！");
+						}  
+						} 
+						else  {  
+							System.out.print("文件不存在");  
+						}  
+					} catch (Exception e) {  
+						e.printStackTrace();  
+					}
+					break;
+				case 2:
+					try{
+						File fout=new File("file/record.txt");
+						BufferedWriter foutput = new BufferedWriter(new FileWriter(fout));  
+						foutput.write("");  
+						foutput.close();	
+						System.out.println("全部删除成功！");
+						break;
+						}catch(Exception e){
+							e.printStackTrace();
+						}	
+					default:
+						break;
+					}
+					}catch(InputMismatchException e){
+						System.out.println("输入错误！请重新输入！");
+						delete(list);
+					}
+				}
+		}
+}
+
